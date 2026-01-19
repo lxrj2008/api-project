@@ -1,0 +1,39 @@
+app:
+  name: go-api
+  env: prod
+  logLevel: info
+server:
+  address: 192.168.200.57
+  port: 8080
+  readTimeout: 10s
+  writeTimeout: 10s
+  maxBodyBytes: 1048576
+cors:
+  allowedOrigins:
+    - "https://example.com"
+    - "http://localhost:8080"  
+  allowedMethods:
+    - GET
+    - POST
+    - PUT
+    - DELETE
+    - OPTIONS
+  allowedHeaders:
+    - Authorization
+    - Content-Type
+  allowCredentials: true
+db:
+  dsn: "sqlserver://sa:123456@sql-prod:1433?database=go_api&encrypt=disable"
+  maxOpenConns: 50
+  maxIdleConns: 25
+  connMaxLifetime: 30m
+auth:
+  jwtSecret: "replace-with-strong-secret"
+  issuer: "go-api"
+  audience: "go-api-clients"
+  accessTokenTTL: 15m
+  algorithm: HS256
+  privateKeyPath: ""
+  publicKeyPath: ""
+rateLimit:
+  rps: 50
