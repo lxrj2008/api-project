@@ -25,17 +25,17 @@ cors:
     - Content-Type
   allowCredentials: true
 db:
-  dsn: "sqlserver://sa:123456@localhost:1433?database=go_api&encrypt=disable"
-  maxOpenConns: 25
-  maxIdleConns: 25
-  connMaxLifetime: 30m
+  dsn: "sqlserver://sa:123456@192.168.200.57:1433?database=go_api&encrypt=disable"
+  maxOpenConns: 100
+  maxIdleConns: 50
+  connMaxLifetime: 1h
 auth:
-  jwtSecret: "change-me"
-  issuer: "go-api"
-  audience: "go-api-clients"
+  jwtSecret: "a2b8c5f0e3d6g1h4k7l9s0x3z8q5v2t1"
+  issuer: "DA_ShangHai"
+  audience: "api-clients"
   accessTokenTTL: 15m
   algorithm: HS256
   privateKeyPath: ""
   publicKeyPath: ""
 rateLimit:
-  rps: 100
+  rps: 500
