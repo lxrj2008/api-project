@@ -1,2 +1,5 @@
 logs/app-dev.log
 logs/app-prod.log
+bin/go-api
+bin/
+logs/
