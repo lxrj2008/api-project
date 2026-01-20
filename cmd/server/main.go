@@ -32,7 +32,7 @@ func main() {
 		panic(err)
 	}
 
-	logger, err := config.NewLogger(cfg.App.LogLevel)
+	logger, err := config.NewLogger(cfg.App.LogLevel, cfg.Logging.FilePath)
 	if err != nil {
 		panic(err)
 	}

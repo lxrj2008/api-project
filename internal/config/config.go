@@ -19,6 +19,7 @@ type Config struct {
 	CORS      CORSConfig      `mapstructure:"cors"`
 	Database  DatabaseConfig  `mapstructure:"db"`
 	Auth      AuthConfig      `mapstructure:"auth"`
+	Logging   LoggingConfig   `mapstructure:"logging"`
 	RateLimit RateLimitConfig `mapstructure:"rateLimit"`
 }
 
@@ -63,6 +64,11 @@ type AuthConfig struct {
 	Algorithm      string        `mapstructure:"algorithm"`
 	PrivateKeyPath string        `mapstructure:"privateKeyPath"`
 	PublicKeyPath  string        `mapstructure:"publicKeyPath"`
+}
+
+// LoggingConfig controls log output destinations.
+type LoggingConfig struct {
+	FilePath string `mapstructure:"filePath"`
 }
 
 // RateLimitConfig defines API throughput guardrails.
@@ -138,6 +144,9 @@ func (c *Config) Validate() error {
 	}
 	if c.Auth.Algorithm == "" {
 		missing = append(missing, "auth.algorithm")
+	}
+	if c.Logging.FilePath == "" {
+		missing = append(missing, "logging.filePath")
 	}
 	if c.RateLimit.RPS <= 0 {
 		missing = append(missing, "rateLimit.rps")

@@ -2,6 +2,8 @@ app:
   name: go-api
   env: prod
   logLevel: info
+logging:
+  filePath: logs/app-prod.log
 server:
   address: 192.168.200.57
   port: 8080
@@ -10,7 +12,7 @@ server:
   maxBodyBytes: 1048576
 cors:
   allowedOrigins:
-    - "https://example.com"
+    - "http://localhost:3000"
     - "http://localhost:8080"  
   allowedMethods:
     - GET
