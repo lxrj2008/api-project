@@ -5,10 +5,10 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/example/go-api/auth"
-	"github.com/example/go-api/dto"
-	"github.com/example/go-api/repository"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/auth"
+	"liangxiong/demo/dto"
+	"liangxiong/demo/repository"
+	"liangxiong/demo/utils"
 )
 
 // AuthService handles authentication flows.

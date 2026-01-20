@@ -19,8 +19,8 @@ import (
 
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/internal/config"
-	"github.com/example/go-api/server"
+	"liangxiong/demo/internal/config"
+	"liangxiong/demo/server"
 )
 
 func main() {

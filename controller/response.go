@@ -6,7 +6,7 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/utils"
 )
 
 // APIResponse defines the unified response shape.

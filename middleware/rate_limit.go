@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"golang.org/x/time/rate"
 
-	"github.com/example/go-api/controller"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/controller"
+	"liangxiong/demo/utils"
 )
 
 // RateLimit limits per-process requests per second.

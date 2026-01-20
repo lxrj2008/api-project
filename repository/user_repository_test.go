@@ -8,7 +8,7 @@ import (
 
 	"github.com/DATA-DOG/go-sqlmock"
 
-	"github.com/example/go-api/model/entity"
+	"liangxiong/demo/model/entity"
 )
 
 func TestGetByID(t *testing.T) {

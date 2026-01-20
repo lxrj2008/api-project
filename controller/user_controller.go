@@ -7,9 +7,9 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/dto"
-	"github.com/example/go-api/service"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/dto"
+	"liangxiong/demo/service"
+	"liangxiong/demo/utils"
 )
 
 // UserController handles HTTP requests for users.

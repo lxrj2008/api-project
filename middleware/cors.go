@@ -6,7 +6,7 @@ import (
 	"github.com/gin-contrib/cors"
 	"github.com/gin-gonic/gin"
 
-	"github.com/example/go-api/internal/config"
+	"liangxiong/demo/internal/config"
 )
 
 // CORS configures CORS based on configuration file.

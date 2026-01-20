@@ -3,7 +3,7 @@ package controller
 import (
 	"github.com/go-playground/validator/v10"
 
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/utils"
 )
 
 // parseValidationErrors builds a readable map from validator errors.

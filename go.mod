@@ -1,4 +1,4 @@
-module github.com/example/go-api
+module liangxiong/demo
 
 go 1.21
 

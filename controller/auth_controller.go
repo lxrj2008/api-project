@@ -4,8 +4,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/dto"
-	"github.com/example/go-api/service"
+	"liangxiong/demo/dto"
+	"liangxiong/demo/service"
 )
 
 // AuthController exposes authentication endpoints.

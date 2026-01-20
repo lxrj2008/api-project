@@ -8,11 +8,11 @@ import (
 	ginSwagger "github.com/swaggo/gin-swagger"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/auth"
-	"github.com/example/go-api/controller"
-	"github.com/example/go-api/docs"
-	"github.com/example/go-api/internal/config"
-	"github.com/example/go-api/middleware"
+	"liangxiong/demo/auth"
+	"liangxiong/demo/controller"
+	"liangxiong/demo/docs"
+	"liangxiong/demo/internal/config"
+	"liangxiong/demo/middleware"
 )
 
 func setupRoutes(engine *gin.Engine, cfg *config.Config, logger *zap.Logger, userController *controller.UserController, authController *controller.AuthController, jwtManager *auth.JWTManager) {

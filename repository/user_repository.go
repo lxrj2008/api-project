@@ -5,8 +5,8 @@ import (
 	"database/sql"
 	"errors"
 
-	"github.com/example/go-api/model/entity"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/model/entity"
+	"liangxiong/demo/utils"
 )
 
 // sqlExecutor wraps *sql.DB or *sql.Tx to unify method calls.

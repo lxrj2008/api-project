@@ -12,7 +12,7 @@ import (
 
 	"github.com/golang-jwt/jwt/v5"
 
-	"github.com/example/go-api/internal/config"
+	"liangxiong/demo/internal/config"
 )
 
 // JWTManager encapsulates signing and verification logic.

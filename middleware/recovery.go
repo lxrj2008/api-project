@@ -6,8 +6,8 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/controller"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/controller"
+	"liangxiong/demo/utils"
 )
 
 // Recovery handles panics and emits JSON error.

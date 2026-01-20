@@ -6,11 +6,11 @@ import (
 	"errors"
 	"time"
 
-	"github.com/example/go-api/auth"
-	"github.com/example/go-api/dto"
-	"github.com/example/go-api/model/entity"
-	"github.com/example/go-api/repository"
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/auth"
+	"liangxiong/demo/dto"
+	"liangxiong/demo/model/entity"
+	"liangxiong/demo/repository"
+	"liangxiong/demo/utils"
 )
 
 // UserService exposes application use cases for users.

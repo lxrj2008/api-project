@@ -3,7 +3,7 @@ package middleware
 import (
 	"github.com/gin-gonic/gin"
 
-	"github.com/example/go-api/utils"
+	"liangxiong/demo/utils"
 )
 
 // RequestID injects a unique request identifier into context and response headers.

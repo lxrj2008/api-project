@@ -10,12 +10,12 @@ import (
 	"github.com/gin-gonic/gin"
 	"go.uber.org/zap"
 
-	"github.com/example/go-api/auth"
-	"github.com/example/go-api/controller"
-	"github.com/example/go-api/internal/config"
-	"github.com/example/go-api/middleware"
-	"github.com/example/go-api/repository"
-	"github.com/example/go-api/service"
+	"liangxiong/demo/auth"
+	"liangxiong/demo/controller"
+	"liangxiong/demo/internal/config"
+	"liangxiong/demo/middleware"
+	"liangxiong/demo/repository"
+	"liangxiong/demo/service"
 )
 
 // Server represents the HTTP server.
