@@ -78,7 +78,7 @@ type RateLimitConfig struct {
 
 // Load reads configuration for the current environment.
 func Load(basePath string) (*Config, error) {
-	cfg := &Config{}
+	cfg := Config{}
 	v := viper.New()
 
 	env := strings.TrimSpace(os.Getenv("APP_ENV"))
@@ -105,7 +105,7 @@ func Load(basePath string) (*Config, error) {
 		return nil, err
 	}
 
-	return cfg, nil
+	return &cfg, nil
 }
 
 // Validate ensures the config contains all mandatory values.
