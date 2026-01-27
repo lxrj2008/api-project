@@ -11,6 +11,70 @@ definitions:
       traceId:
         type: string
     type: object
+  dto.ExchangeCreateRequest:
+    properties:
+      clearExchangeCode:
+        maxLength: 10
+        type: string
+      description:
+        maxLength: 3000
+        type: string
+      globexExchangeCode:
+        maxLength: 10
+        type: string
+      mqmExchangeCode:
+        maxLength: 10
+        type: string
+      segType:
+        maxLength: 10
+        type: string
+    required:
+    - clearExchangeCode
+    - globexExchangeCode
+    - mqmExchangeCode
+    - segType
+    type: object
+  dto.ExchangeListResponse:
+    properties:
+      items:
+        items:
+          $ref: '#/definitions/dto.ExchangeResponse'
+        type: array
+      total:
+        type: integer
+    type: object
+  dto.ExchangeResponse:
+    properties:
+      clearExchangeCode:
+        type: string
+      description:
+        type: string
+      globexExchangeCode:
+        type: string
+      mqmExchangeCode:
+        type: string
+      segType:
+        type: string
+    type: object
+  dto.ExchangeUpdateRequest:
+    properties:
+      clearExchangeCode:
+        maxLength: 10
+        type: string
+      description:
+        maxLength: 3000
+        type: string
+      globexExchangeCode:
+        maxLength: 10
+        type: string
+      segType:
+        maxLength: 10
+        type: string
+    required:
+    - clearExchangeCode
+    - globexExchangeCode
+    - segType
+    type: object
   dto.LoginRequest:
     properties:
       password:
@@ -147,6 +211,184 @@ paths:
       summary: Login
       tags:
       - Auth
+  /api/v1/exchanges:
+    get:
+      description: Paginated list of exchanges
+      parameters:
+      - default: 1
+        description: Page number
+        in: query
+        name: page
+        type: integer
+      - default: 20
+        description: Page size
+        in: query
+        name: size
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ExchangeListResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: List exchanges
+      tags:
+      - Exchanges
+    post:
+      consumes:
+      - application/json
+      description: Create a new exchange
+      parameters:
+      - description: Exchange payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ExchangeCreateRequest'
+      produces:
+      - application/json
+      responses:
+        "201":
+          description: Created
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ExchangeResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Create exchange
+      tags:
+      - Exchanges
+  /api/v1/exchanges/{code}:
+    delete:
+      description: Delete an exchange by MQM code
+      parameters:
+      - description: MQM Exchange Code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Delete exchange
+      tags:
+      - Exchanges
+    get:
+      description: Retrieve an exchange by MQM code
+      parameters:
+      - description: MQM Exchange Code
+        in: path
+        name: code
+        required: true
+        type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ExchangeResponse'
+              type: object
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Get exchange
+      tags:
+      - Exchanges
+    put:
+      consumes:
+      - application/json
+      description: Update an exchange record
+      parameters:
+      - description: MQM Exchange Code
+        in: path
+        name: code
+        required: true
+        type: string
+      - description: Exchange payload
+        in: body
+        name: request
+        required: true
+        schema:
+          $ref: '#/definitions/dto.ExchangeUpdateRequest'
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            allOf:
+            - $ref: '#/definitions/controller.APIResponse'
+            - properties:
+                data:
+                  $ref: '#/definitions/dto.ExchangeResponse'
+              type: object
+        "400":
+          description: Bad Request
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "401":
+          description: Unauthorized
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+        "404":
+          description: Not Found
+          schema:
+            $ref: '#/definitions/controller.APIResponse'
+      security:
+      - BearerAuth: []
+      summary: Update exchange
+      tags:
+      - Exchanges
   /api/v1/users:
     get:
       description: Paginated list of users

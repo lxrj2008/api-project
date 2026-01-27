@@ -44,18 +44,21 @@ func New(cfg *config.Config, logger *zap.Logger, db *sql.DB) (*Server, error) {
 	)
 
 	userRepo := repository.NewUserRepository(db)
+	exchangeRepo := repository.NewExchangeRepository(db)
 	jwtManager, err := auth.NewJWTManager(cfg.Auth)
 	if err != nil {
 		return nil, err
 	}
 
 	userService := service.NewUserService(db, userRepo)
+	exchangeService := service.NewExchangeService(db, exchangeRepo)
 	authService := service.NewAuthService(userRepo, jwtManager)
 
 	userController := controller.NewUserController(userService, logger)
+	exchangeController := controller.NewExchangeController(exchangeService, logger)
 	authController := controller.NewAuthController(authService, logger)
 
-	setupRoutes(engine, cfg, logger, userController, authController, jwtManager)
+	setupRoutes(engine, cfg, logger, userController, exchangeController, authController, jwtManager)
 
 	return &Server{cfg: cfg, logger: logger, engine: engine}, nil
 }

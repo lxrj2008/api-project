@@ -15,7 +15,7 @@ import (
 	"liangxiong/demo/middleware"
 )
 
-func setupRoutes(engine *gin.Engine, cfg *config.Config, logger *zap.Logger, userController *controller.UserController, authController *controller.AuthController, jwtManager *auth.JWTManager) {
+func setupRoutes(engine *gin.Engine, cfg *config.Config, logger *zap.Logger, userController *controller.UserController, exchangeController *controller.ExchangeController, authController *controller.AuthController, jwtManager *auth.JWTManager) {
 	docs.SwaggerInfo.Title = cfg.App.Name + " API"
 	docs.SwaggerInfo.Version = "1.0.0"
 	docs.SwaggerInfo.BasePath = "/"
@@ -37,5 +37,13 @@ func setupRoutes(engine *gin.Engine, cfg *config.Config, logger *zap.Logger, use
 		userGroup.POST("", userController.Create)
 		userGroup.PUT("/:id", userController.Update)
 		userGroup.DELETE("/:id", userController.Delete)
+
+		exchangeGroup := api.Group("/exchanges")
+		exchangeGroup.Use(middleware.Auth(jwtManager, logger))
+		exchangeGroup.GET("", exchangeController.List)
+		exchangeGroup.GET("/:code", exchangeController.Get)
+		exchangeGroup.POST("", exchangeController.Create)
+		exchangeGroup.PUT("/:code", exchangeController.Update)
+		exchangeGroup.DELETE("/:code", exchangeController.Delete)
 	}
 }

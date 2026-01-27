@@ -70,6 +70,302 @@
                 }
             }
         },
+        "/api/v1/exchanges": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Paginated list of exchanges",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchanges"
+                ],
+                "summary": "List exchanges",
+                "parameters": [
+                    {
+                        "type": "integer",
+                        "default": 1,
+                        "description": "Page number",
+                        "name": "page",
+                        "in": "query"
+                    },
+                    {
+                        "type": "integer",
+                        "default": 20,
+                        "description": "Page size",
+                        "name": "size",
+                        "in": "query"
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/controller.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.ExchangeListResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    }
+                }
+            },
+            "post": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Create a new exchange",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchanges"
+                ],
+                "summary": "Create exchange",
+                "parameters": [
+                    {
+                        "description": "Exchange payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ExchangeCreateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "201": {
+                        "description": "Created",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/controller.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.ExchangeResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/v1/exchanges/{code}": {
+            "get": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Retrieve an exchange by MQM code",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchanges"
+                ],
+                "summary": "Get exchange",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQM Exchange Code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/controller.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.ExchangeResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    }
+                }
+            },
+            "put": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Update an exchange record",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchanges"
+                ],
+                "summary": "Update exchange",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQM Exchange Code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "description": "Exchange payload",
+                        "name": "request",
+                        "in": "body",
+                        "required": true,
+                        "schema": {
+                            "$ref": "#/definitions/dto.ExchangeUpdateRequest"
+                        }
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "allOf": [
+                                {
+                                    "$ref": "#/definitions/controller.APIResponse"
+                                },
+                                {
+                                    "type": "object",
+                                    "properties": {
+                                        "data": {
+                                            "$ref": "#/definitions/dto.ExchangeResponse"
+                                        }
+                                    }
+                                }
+                            ]
+                        }
+                    },
+                    "400": {
+                        "description": "Bad Request",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    }
+                }
+            },
+            "delete": {
+                "security": [
+                    {
+                        "BearerAuth": []
+                    }
+                ],
+                "description": "Delete an exchange by MQM code",
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "Exchanges"
+                ],
+                "summary": "Delete exchange",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "MQM Exchange Code",
+                        "name": "code",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "401": {
+                        "description": "Unauthorized",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    },
+                    "404": {
+                        "description": "Not Found",
+                        "schema": {
+                            "$ref": "#/definitions/controller.APIResponse"
+                        }
+                    }
+                }
+            }
+        },
         "/api/v1/users": {
             "get": {
                 "security": [
@@ -401,6 +697,97 @@
                 },
                 "traceId": {
                     "type": "string"
+                }
+            }
+        },
+        "dto.ExchangeCreateRequest": {
+            "type": "object",
+            "required": [
+                "clearExchangeCode",
+                "globexExchangeCode",
+                "mqmExchangeCode",
+                "segType"
+            ],
+            "properties": {
+                "clearExchangeCode": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 3000
+                },
+                "globexExchangeCode": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "mqmExchangeCode": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "segType": {
+                    "type": "string",
+                    "maxLength": 10
+                }
+            }
+        },
+        "dto.ExchangeListResponse": {
+            "type": "object",
+            "properties": {
+                "items": {
+                    "type": "array",
+                    "items": {
+                        "$ref": "#/definitions/dto.ExchangeResponse"
+                    }
+                },
+                "total": {
+                    "type": "integer"
+                }
+            }
+        },
+        "dto.ExchangeResponse": {
+            "type": "object",
+            "properties": {
+                "clearExchangeCode": {
+                    "type": "string"
+                },
+                "description": {
+                    "type": "string"
+                },
+                "globexExchangeCode": {
+                    "type": "string"
+                },
+                "mqmExchangeCode": {
+                    "type": "string"
+                },
+                "segType": {
+                    "type": "string"
+                }
+            }
+        },
+        "dto.ExchangeUpdateRequest": {
+            "type": "object",
+            "required": [
+                "clearExchangeCode",
+                "globexExchangeCode",
+                "segType"
+            ],
+            "properties": {
+                "clearExchangeCode": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "description": {
+                    "type": "string",
+                    "maxLength": 3000
+                },
+                "globexExchangeCode": {
+                    "type": "string",
+                    "maxLength": 10
+                },
+                "segType": {
+                    "type": "string",
+                    "maxLength": 10
                 }
             }
         },
